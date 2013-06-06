@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:georss="http://www.georss.org/georss">
+  <channel>
+
+<title>Hydrographischer Dienst Kärnten - ABFLUSS Stationen  </title>
+   <subtitle> dynamischer GeoRSS</subtitle>
+   <link href="http://www.kagis.ktn.gv.at"/>
+   <updated>4.6.2013</updated>
+   <author>
+     <name>thomas piechl</name>
+     <email>t.p.[at]ktn.gv.at</email>
+   </author>
+
+
+<item>
+<title>Mauthen - Gail  </title>
+<link>https://info.ktn.gv.at/asp/hydro/daten/Mauthen_dia2_Q.gif</link>
+<description><![CDATA[ <p>
+Datum/Uhrzeit der Messung : 06.06.2013 18:45:05<br>
+Wasserstand(cm): 83 <br>
+Abfluss(m³): 17,2<br>
+<img src="https://info.ktn.gv.at/asp/hydro/daten/Mauthen_dia2_Q.gif" alt="Diagramm 3 TAGE" />
+]]></description>
+<geo:Point>
+ <geo:lat>46.6686111111111</geo:lat>
+ <geo:long>13.0002777777778</geo:long>
+</geo:Point>
+      
+</item>
+
+</channel>
+</rss>
