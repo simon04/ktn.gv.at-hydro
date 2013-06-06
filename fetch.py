@@ -91,6 +91,7 @@ def fetchToSqlite():
     cursor.execute(
         'replace into stationdata (station, river, lat, long, w, q, dt) values (?,?,?,?,?,?,?)',
         [i['station'], i['river'], i['lat'], i['long'], i['w'], i['q'], i['dt'].isoformat()])
+  db.commit()
   cursor.close()
 
 if __name__ == '__main__':
