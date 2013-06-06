@@ -1,6 +1,22 @@
 import xml.etree.ElementTree as ET
 from urllib.request import urlopen
 from pprint import pprint
+import re
+
+def parseFloat(s, prefix=''):
+  """
+  >>> parseFloat('17')
+  17.0
+  >>> parseFloat('0.123')
+  0.123
+  >>> parseFloat('0,456')
+  0.456
+  """
+  m = re.compile(prefix + '(\d+([,.]\d*)?)').search(s)
+  if m:
+    return float(m.group(1).replace(',', '.'))
+  else:
+    None
 
 def parseGeoRss(f):
   """
