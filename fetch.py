@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 from urllib.request import urlopen
 from pprint import pprint
 import re
+from datetime import datetime
 
 def parseFloat(s, prefix=''):
   """
@@ -18,10 +19,23 @@ def parseFloat(s, prefix=''):
   else:
     None
 
+def parseDateTime(s, prefix=''):
+  """
+  >>> parseDateTime('06.06.2013 19:07:35')
+  datetime.datetime(2013, 6, 6, 19, 7, 35)
+  """
+  m = re.compile(prefix + '(\d\d\.\d\d\.\d\d\d\d \d\d:\d\d:\d\d)').search(s)
+  if m:
+    return datetime.strptime(m.group(1), '%d.%m.%Y %H:%M:%S')
+  else:
+    return None
+
+
 def parseGeoRss(f):
   """
   >>> pprint(parseGeoRss('test.xml'))
-  [{'lat': 46.6686111111111,
+  [{'dt': datetime.datetime(2013, 6, 6, 18, 45, 5),
+    'lat': 46.6686111111111,
     'long': 13.0002777777778,
     'q': 17.2,
     'station': 'Mauthen - Gail',
@@ -38,6 +52,7 @@ def parseGeoRss(f):
       'long': float(item.findtext('geo:Point/geo:long', namespaces=ns)),
       'w': parseFloat(desc, 'Wasserstand\(cm\)\s*:\s*'),
       'q': parseFloat(desc, 'Abfluss\(m.*?\)\s*:\s*'),
+      'dt': parseDateTime(desc, 'Datum/Uhrzeit der Messung\s*:\s*'),
     })
   return r
 
