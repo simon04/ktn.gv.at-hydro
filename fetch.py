@@ -5,8 +5,10 @@ import re
 from datetime import datetime
 
 """
-A Python 3.3 script to fetch and store hydro Open Government Data from
+A Python 3.3 script to fetch hydrography Open Government Data from
 http://www.kagis.ktn.gv.at/279012_DE-OGD-Kaernten_%28beta%29-Ablussmessstationen
+and store it in a SQLite 3 database.
+
 Data is licensed CC-BY 3.0 ("Land Kärnten - data.ktn.gv.at").
 This script/file is licensed GNU General Public License 3.
 """
