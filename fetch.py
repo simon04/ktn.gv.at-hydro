@@ -66,4 +66,26 @@ def parseGeoRss(f):
     })
   return r
 
-#feed = ET.parse(urlopen('https://info.ktn.gv.at/asp/hydro/hydro_stationen_abfluss_rss.asp'))
+def fetchToSqlite():
+  import sqlite3
+  db = sqlite3.connect('data.db')
+  db.execute('create table if not exists stationdata ('
+      'station text,'
+      'river text,'
+      'lat real,'
+      'long real,'
+      'w real,'
+      'q real,'
+      'dt text,'
+      'primary key (station, dt)'
+      ')')
+  cursor = db.cursor()
+  for i in parseGeoRss(urlopen('https://info.ktn.gv.at/asp/hydro/hydro_stationen_abfluss_rss.asp')):
+    pprint(i)
+    cursor.execute(
+        'replace into stationdata (station, river, lat, long, w, q, dt) values (?,?,?,?,?,?,?)',
+        [i['station'], i['river'], i['lat'], i['long'], i['w'], i['q'], i['dt'].isoformat()])
+  cursor.close()
+
+if __name__ == '__main__':
+  fetchToSqlite()
