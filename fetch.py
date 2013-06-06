@@ -7,7 +7,7 @@ from datetime import datetime
 """
 A Python 3.3 script to fetch and store hydro Open Government Data from
 http://www.kagis.ktn.gv.at/279012_DE-OGD-Kaernten_%28beta%29-Ablussmessstationen
-Data is licensed CC-BY 3.0.
+Data is licensed CC-BY 3.0 ("Land Kärnten - data.ktn.gv.at").
 """
 
 def parseFloat(s, prefix=''):
