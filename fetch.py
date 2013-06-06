@@ -38,16 +38,19 @@ def parseGeoRss(f):
     'lat': 46.6686111111111,
     'long': 13.0002777777778,
     'q': 17.2,
-    'station': 'Mauthen - Gail',
+    'river': 'Gail',
+    'station': 'Mauthen',
     'w': 83.0}]
   """
   ns = {'geo': 'http://www.w3.org/2003/01/geo/wgs84_pos#'}
   feed = ET.parse(f)
   r = list()
   for item in feed.findall('channel/item'):
+    title = item.findtext('title').strip().split(' - ')
     desc = item.findtext('description')
     r.append({
-      'station': item.findtext('title').strip(),
+      'station': title[0],
+      'river': title[1],
       'lat': float(item.findtext('geo:Point/geo:lat', namespaces=ns)),
       'long': float(item.findtext('geo:Point/geo:long', namespaces=ns)),
       'w': parseFloat(desc, 'Wasserstand\(cm\)\s*:\s*'),
