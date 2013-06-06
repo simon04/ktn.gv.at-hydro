@@ -23,10 +23,17 @@ def parseDateTime(s, prefix=''):
   """
   >>> parseDateTime('06.06.2013 19:07:35')
   datetime.datetime(2013, 6, 6, 19, 7, 35)
+  >>> parseDateTime('06.06.2013 19:07:00')
+  datetime.datetime(2013, 6, 6, 19, 7)
+  >>> parseDateTime('05.06.2013')
+  datetime.datetime(2013, 6, 5, 0, 0)
   """
   m = re.compile(prefix + '(\d\d\.\d\d\.\d\d\d\d \d\d:\d\d:\d\d)').search(s)
+  mD = re.compile(prefix + '(\d\d\.\d\d\.\d\d\d\d)').search(s)
   if m:
     return datetime.strptime(m.group(1), '%d.%m.%Y %H:%M:%S')
+  elif mD:
+    return datetime.strptime(mD.group(1), '%d.%m.%Y')
   else:
     return None
 
