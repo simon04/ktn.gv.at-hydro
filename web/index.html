@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html data-ng-app="myApp">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8/jquery.flot.min.js"></script>
+  <script src="stations.js"></script>
+  <script src="app.js"></script>
+  <style>
+  body {
+    font-family: Ubuntu;
+  }
+  .map:hover {
+    -webkit-transform: scale(2);
+    transition: all 0.5s ease;
+  }
+  .map {
+    width: 150px;
+    height: 75px;
+  }
+  .chart {
+    width: 150px;
+    height: 100px;
+    font-size: 80%;
+  }
+  </style>
+</head>
+<body data-ng-controller="mainCtrl">
+  <table class="table table-striped">
+    <tr>
+      <th>Station</th>
+      <th>Fluss</th>
+      <th>W</th>
+      <th>Q</th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="e in data | orderBy:['river','station']">
+      <td>{{e.station}}</td>
+      <td>{{e.river}}</td>
+      <td>{{e.w}}</td>
+      <td>{{e.q}}</td>
+      <td>
+        <img ng-src="http://api.tiles.mapbox.com/v3/examples.map-4l7djmvo/pin-s-star+c00({{e.long}},{{e.lat}})/{{e.long}},{{e.lat}},10/300x150.png" class="map"></img>
+      </td>
+      <td>
+        <div class="chart" chart="" ng-model="chart"></div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+
+
