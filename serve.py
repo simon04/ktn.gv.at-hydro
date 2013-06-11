@@ -7,7 +7,13 @@ db.row_factory = sqlite3.Row
 
 @hook('after_request')
 def enable_cors():
-    response.headers['Access-Control-Allow-Origin'] = '*'
+  response.headers['Access-Control-Allow-Origin'] = '*'
+
+@route('/stations', method='OPTIONS')
+@route('/stations/<sta>', method='OPTIONS')
+def cors(sta = ''):
+  response.set_header('Access-Control-Allow-Origin', '*')
+  response.set_header('Access-Control-Allow-Headers', 'x-requested-with')
 
 @route('/stations')
 def stations():
